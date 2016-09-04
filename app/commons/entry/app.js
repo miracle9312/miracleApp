@@ -7,7 +7,7 @@ import {
     View,
     Navigator
 } from 'react-native'
-import Miracle  from '../test/Miralce'
+import Splash from '../Splash'
 
 export default class App extends Component {
     constructor(props){
@@ -16,16 +16,28 @@ export default class App extends Component {
     componentDidMount(){
 
     }
+
+    /*切换路由效果*/
+    configureScene=()=>{
+        return Navigator.SceneConfigs.PushFromRight
+    };
+
+    /*渲染页面
+    * @params Object route保存所有路由
+    * @params object navigator 有pop,push等方法处理路由*/
+    renderScene= (route,navigator)=>{
+            let Component = route.component
+            return <Component route={route} navigator={navigator} />
+        }
+
     render(){
         return(
         <Navigator
-            initialRoute={{name:'miracle',component:Miracle}}
-            configureScene = {(route)=>{
-                return Navigator.SceneConfigs.HorizontalSwipeJump
-            }}
-            renderScene = {(route,navigator)=>{
-                let Component = route.component
-                return <Component {...route.params} navigator={navigator} />
+            configureScene = {this.configureScene}
+            renderScene = {this.renderScene}
+            initialRoute={{
+                component:Splash,
+                name:'splash'
             }}
 
         />

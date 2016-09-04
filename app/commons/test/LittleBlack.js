@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import Miracle from './Miralce';
+import MainToolBar from '../general/MainToolBar'
 
 export default class LittleBlack extends Component {
     constructor(props){
@@ -22,13 +23,16 @@ export default class LittleBlack extends Component {
     }
     render(){
         return(
-            <TouchableOpacity  onPress={this.toMiracle}>
-                <View
-                    style={{width:80,height:40,borderRadius:5,backgroundColor:'green',justifyContent:'center'}}
-                >
-                    <Text style={{textAlign:'center'}}>hello LittleBlack</Text>
-                </View>
-            </TouchableOpacity>
+            <View>
+                <TouchableOpacity  onPress={this.toMiracle}>
+                    <View
+                        style={{width:80,height:40,borderRadius:5,backgroundColor:'green',justifyContent:'center'}}
+                    >
+                        <Text style={{textAlign:'center'}}>hello LittleBlack</Text>
+                    </View>
+                </TouchableOpacity>
+                <MainToolBar />
+            </View>
         )
     }
 
