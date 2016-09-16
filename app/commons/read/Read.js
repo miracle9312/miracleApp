@@ -14,7 +14,7 @@ export default class Friend extends Component {
     render(){
         return(
             <View>
-                <Text>Local Page</Text>
+                <Text>read Page</Text>
             </View>
         )
     }

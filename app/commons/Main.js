@@ -13,7 +13,7 @@ import {connect} from 'react-redux'
 import test from '../redux/action/test'
 
 let _navigator = null;
-let currentRoute='square'
+let currentRoute='home'
 
 class Main extends Component {
     constructor(props) {
@@ -40,13 +40,13 @@ class Main extends Component {
     render () {
         return(
             <View style={styles.container}>
-                <MainToolBar style={styles.maintoolbar} onSelect= {this.selectMenu} />
                 <Navigator
                     style={styles.container}
                     initialRoute={{name:currentRoute}}
                     configureScene={this.configureScene}
                     renderScene={this.renderScene}
                 />
+                <MainToolBar style={styles.maintoolbar} onSelect= {this.selectMenu} />
             </View>
         )
     }
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         position:'absolute',
         left:0,
         right:0,
-        top:0,
+        bottom:0,
         height:56
     }
 })

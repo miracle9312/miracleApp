@@ -2,40 +2,40 @@
  * Created by miracle on 2016/9/4.
  */
 import React,{Component} from 'react'
-import Square from '../square/Square';
-import Friend from '../friend/Friend';
-import Local from '../local/Local';
-import Search from '../search/Search';
+import Home from '../home/Home';
+import Read from '../read/Read';
+import Music from '../music/Music';
+import Diary from '../diary/Diary';
 
 
 export const tabItems = [
-    {name:'square',path:require('../image/home.png')},
-    {name:'local',path:require('../image/goods.png')},
-    {name:'friend',path:require('../image/demand.png')},
-    {name:'search',path:require('../image/user.png')}
+    {name:'home',path:'home',nick:'首页'},
+    {name:'read',path:'book',nick:'阅读'},
+    {name:'music',path:'headphones',nick:'音乐'},
+    {name:'diary',path:'lock',nick:'日记本'}
 ]
 
 export function renderConfig (route,navigator,propsall){
     let name = route.name;
     switch (name){
-        case 'square':
+        case 'home':
             return(
-                <Square navigator = {navigator} route={route} {...propsall} />
+                <Home navigator = {navigator} route={route} {...propsall} />
             );
         break;
-        case 'local':
+        case 'read':
             return(
-                <Local navigator = {navigator} route={route} {...propsall}/>
+                <Read navigator = {navigator} route={route} {...propsall}/>
             );
         break;
-        case 'friend':
+        case 'music':
             return(
-                <Friend navigator = {navigator} route={route} {...propsall} />
+                <Music navigator = {navigator} route={route} {...propsall} />
             );
         break;
-        case 'search':
+        case 'diary':
             return(
-                <Search navigator = {navigator} route={route} {...propsall} />
+                <Diary navigator = {navigator} route={route} {...propsall} />
             );
         break;
     }

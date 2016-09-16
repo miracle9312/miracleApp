@@ -5,9 +5,13 @@
 import React,{Component} from 'react'
 import {
     View,
-    Navigator
+    Navigator,
+    BackAndroid
 } from 'react-native'
 import Splash from '../Splash'
+import {NaviGoBack} from '../utils/CommonUtil'
+
+var _navigator;
 
 export default class App extends Component {
     constructor(props){
@@ -19,7 +23,7 @@ export default class App extends Component {
 
     /*切换路由效果*/
     configureScene=()=>{
-        return Navigator.SceneConfigs.PushFromRight
+        return Navigator.SceneConfigs.FadeAndroid;
     };
 
     /*渲染页面
@@ -27,6 +31,7 @@ export default class App extends Component {
     * @params object navigator 有pop,push等方法处理路由*/
     renderScene= (route,navigator)=>{
             let Component = route.component
+            _navigator = navigator;
             return <Component route={route} navigator={navigator} />
         }
 
