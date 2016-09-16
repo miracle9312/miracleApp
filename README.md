@@ -1,2 +1,4 @@
 # miracleApp
-this is my own react-naive app
+react-native-miracle-app
+this is an app just for yourself
+
