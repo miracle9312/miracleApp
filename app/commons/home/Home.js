@@ -3,15 +3,21 @@
  */
 import React,{Component} from 'react';
 import {
+    StyleSheet,
+    Dimensions,
     TouchableOpacity,
     View,
     Text,
     Image
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {request} from '../utils/RequestUtil';
 import Person from '../person/Person';
-import ToolBar from '../general/ToolBar'
+import Card from '../general/Card';
+import home from '../mockedData/home.json';
+
+var windowW = Dimensions.get('window').width;
+var windowH = Dimensions.get('window').height;
+let homeData = home.home
 
 export default class Square extends Component {
     constructor(props){
@@ -19,9 +25,20 @@ export default class Square extends Component {
     }
 
     componentDidMount(){
-        this.testrequest();
+       /* this.testrequest();*/
+        /*this.testReddit();*/
     }
 
+    testReddit = ()=>{
+        let url='https://www.reddit.com/r/pics/.json';
+        let method = 'get';
+        let params = {
+            count:5
+        }
+        request(url,method,params).then((response)=>{
+            console.log(response);
+        });
+    }
     testrequest = ()=>{
         let url = 'demand/';
         let method = 'get';
@@ -44,17 +61,18 @@ export default class Square extends Component {
     }
 
     render(){
-        const {navigator} = this.props
         return(
-            <View>
-                <ToolBar navigator = {navigator} name='miracle' />
-                <TouchableOpacity onPress = {this.onPress}>
-                    <View>
-                        <Icon name="rocket" size={30} color="#900" />
-                        <Text>home</Text>
-                    </View>
-                </TouchableOpacity>
+            <View style={styles.container}>
+                <Card dataList={homeData} />
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        backgroundColor:'#ffffff',
+        width:windowW,
+        height:windowH-130
+    },
+})

@@ -3,18 +3,22 @@
  */
 import React,{Component} from 'react';
 import {
-    View,
-    Text
-} from 'react-native'
+    Text,
+    View
+} from 'react-native';
+import MusicPlayer from '../general/MusicPlayer';
 
-export default class Friend extends Component {
+export default class Music extends Component {
     constructor(props){
         super(props)
     }
+
     render(){
         return(
             <View>
-                <Text>music Page</Text>
+                <MusicPlayer
+                    path='file:///storage/emulated/0/netease/cloudmusic/Music/123.mp3'
+                />
             </View>
         )
     }

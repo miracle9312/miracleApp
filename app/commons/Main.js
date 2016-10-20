@@ -7,17 +7,21 @@ import {
     Navigator,
     View
 } from 'react-native';
-import {renderConfig} from './utils/RouterUtil'
-import MainToolBar from './general/MainToolBar'
-import {connect} from 'react-redux'
-import test from '../redux/action/test'
+import {renderConfig} from './utils/RouterUtil';
+import MainToolBar from './general/MainToolBar';
+import {connect} from 'react-redux';
+import test from '../redux/action/test';
+import ToolBar from './general/ToolBar';
 
 let _navigator = null;
-let currentRoute='home'
+let currentRoute='music';
 
 class Main extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            name:'music'
+        }
     }
 
     componentDidMount(){
@@ -34,12 +38,16 @@ class Main extends Component {
         return renderConfig(route,navigator,this.props)
     };
 
-    selectMenu = (name)=>{
-        _navigator.push({name:name})
+    selectMenu = (item)=>{
+        _navigator.push({name:item.name});
+        this.setState({
+            name:item.barName
+        });
     };
     render () {
         return(
             <View style={styles.container}>
+                <ToolBar navigator = {this.props.navigator} name={this.state.name} />
                 <Navigator
                     style={styles.container}
                     initialRoute={{name:currentRoute}}

@@ -9,10 +9,10 @@ import Diary from '../diary/Diary';
 
 
 export const tabItems = [
-    {name:'home',path:'home',nick:'首页'},
-    {name:'read',path:'book',nick:'阅读'},
-    {name:'music',path:'headphones',nick:'音乐'},
-    {name:'diary',path:'lock',nick:'日记本'}
+    {name:'home',path:'home',nick:'首页',barName:'miracle'},
+    {name:'read',path:'book',nick:'阅读',barName:'阅读'},
+    {name:'music',path:'headphones',nick:'音乐',barName:'音乐'},
+    {name:'diary',path:'lock',nick:'日记本',barName:'日记本'}
 ]
 
 export function renderConfig (route,navigator,propsall){

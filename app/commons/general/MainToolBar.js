@@ -24,14 +24,13 @@ export default class MainToolBar extends Component {
         }
     }
     componentDidMount(){
-        console.log(this.props)
     }
-    selectItem=(name)=>{
+    selectItem=(item)=>{
         const {onSelect} = this.props
         this.setState({
-            activeItem:name
+            activeItem:item.name
         })
-        onSelect(name);
+        onSelect(item);
     }
     render(){
         return(
@@ -45,11 +44,10 @@ export default class MainToolBar extends Component {
                                 >
                                     <TouchableOpacity
                                         style={styles.buttonContainer}
-                                        onPress={this.selectItem.bind(this,item.name)}
+                                        onPress={this.selectItem.bind(this,item)}
                                     >
                                        <Icon
-                                           name = {item.path} color={item.name===this.state.activeItem?'#9ec0cc':'#9a9a9a'}
-                                           size={25} />
+                                           name = {item.path} color={item.name===this.state.activeItem?'#86a2d1':'#9a9a9a'} size={25} />
                                         <View>
                                             <Text
                                                 style={item.name===this.state.activeItem?{color:'#9ec0cc'}:{color:'#9a9a9a'}}>

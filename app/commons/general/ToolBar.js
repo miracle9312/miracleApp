@@ -42,7 +42,7 @@ export default class ToolBar extends Component {
                     titleColor="#475a69"
                     navIconName="md-search"
                     actions={[
-                        { title: 'search', iconName: 'md-person', iconSize: 25,iconColor: "#b7b7b7", show: 'always' },
+                        { title: 'search', iconName: 'md-person', iconSize: 25,iconColor: "#475a69", show: 'always' },
                     ]}
                     onIconClicked={this._onIconClicked}
                     onActionSelected={this._onActionSelected}

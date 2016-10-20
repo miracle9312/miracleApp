@@ -26,6 +26,11 @@
 		EEFCC72F961D428B81E789AD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 077C12C3919D4F1BB7E3DF7B /* libc++.tbd */; };
 		D99EA512DFCD4356A7D86CF9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EBF08999F414D8EAF270DDE /* libz.tbd */; };
 		66B37BC976FB4B0CB518D20C /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5BE221E68A4469A1DF2C04 /* libRNVectorIcons.a */; };
+		606554E56F8D4D0ABDE7A35C /* libReactNativeAudioStreaming.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7999397C36B44850B53CD299 /* libReactNativeAudioStreaming.a */; };
+		FD19D86D554F42F7BCB0ABBA /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE1FB6AC811463FAF95400C /* libRNAudio.a */; };
+		B88B15E3990E4846B690F82D /* libReactNativeAudioToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363DF3F61274900A35F498D /* libReactNativeAudioToolkit.a */; };
+		7506DF5A23B14560BF54BE71 /* libRNFileManger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BCFA8BE9D6493FB4AFAE43 /* libRNFileManger.a */; };
+		3FCD38875C60458A8906B428 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FDC97361DB4F5C8B1687EE /* libRNFS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +141,16 @@
 		9EBF08999F414D8EAF270DDE /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 		B31675F01D7D4BF283EEEF64 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6A5BE221E68A4469A1DF2C04 /* libRNVectorIcons.a */ = {isa = PBXFileReference; name = "libRNVectorIcons.a"; path = "libRNVectorIcons.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		49711C59A7824D7DA7F4B850 /* ReactNativeAudioStreaming.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeAudioStreaming.xcodeproj"; path = "../node_modules/react-native-audio-streaming/ios/ReactNativeAudioStreaming.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		7999397C36B44850B53CD299 /* libReactNativeAudioStreaming.a */ = {isa = PBXFileReference; name = "libReactNativeAudioStreaming.a"; path = "libReactNativeAudioStreaming.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		F2C834298E684F7A90AEC56C /* RNAudio.xcodeproj */ = {isa = PBXFileReference; name = "RNAudio.xcodeproj"; path = "../node_modules/react-native-audio/ios/RNAudio.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		EBE1FB6AC811463FAF95400C /* libRNAudio.a */ = {isa = PBXFileReference; name = "libRNAudio.a"; path = "libRNAudio.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		FB1EFF2DA8254BEFA8E8565F /* ReactNativeAudioToolkit.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeAudioToolkit.xcodeproj"; path = "../node_modules/react-native-audio-toolkit/ios/ReactNativeAudioToolkit/ReactNativeAudioToolkit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		9363DF3F61274900A35F498D /* libReactNativeAudioToolkit.a */ = {isa = PBXFileReference; name = "libReactNativeAudioToolkit.a"; path = "libReactNativeAudioToolkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		1C04E67D95AA4201A9BAE145 /* RNFileManger.xcodeproj */ = {isa = PBXFileReference; name = "RNFileManger.xcodeproj"; path = "../node_modules/react-native-file-manager/RNFileManger.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		64BCFA8BE9D6493FB4AFAE43 /* libRNFileManger.a */ = {isa = PBXFileReference; name = "libRNFileManger.a"; path = "libRNFileManger.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		CC4010BC9C0242DFB3D7C29F /* RNFS.xcodeproj */ = {isa = PBXFileReference; name = "RNFS.xcodeproj"; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		32FDC97361DB4F5C8B1687EE /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +180,11 @@
 				EEFCC72F961D428B81E789AD /* libc++.tbd in Frameworks */,
 				D99EA512DFCD4356A7D86CF9 /* libz.tbd in Frameworks */,
 				66B37BC976FB4B0CB518D20C /* libRNVectorIcons.a in Frameworks */,
+				606554E56F8D4D0ABDE7A35C /* libReactNativeAudioStreaming.a in Frameworks */,
+				FD19D86D554F42F7BCB0ABBA /* libRNAudio.a in Frameworks */,
+				B88B15E3990E4846B690F82D /* libReactNativeAudioToolkit.a in Frameworks */,
+				7506DF5A23B14560BF54BE71 /* libRNFileManger.a in Frameworks */,
+				3FCD38875C60458A8906B428 /* libRNFS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +309,11 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				3E90D442B2D34F319D84B074 /* RealmReact.xcodeproj */,
 				B31675F01D7D4BF283EEEF64 /* RNVectorIcons.xcodeproj */,
+				49711C59A7824D7DA7F4B850 /* ReactNativeAudioStreaming.xcodeproj */,
+				F2C834298E684F7A90AEC56C /* RNAudio.xcodeproj */,
+				FB1EFF2DA8254BEFA8E8565F /* ReactNativeAudioToolkit.xcodeproj */,
+				1C04E67D95AA4201A9BAE145 /* RNFileManger.xcodeproj */,
+				CC4010BC9C0242DFB3D7C29F /* RNFS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -616,6 +641,11 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -634,6 +664,11 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
@@ -649,6 +684,11 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)\..\node_modules\realm\src/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
+					"$(SRCROOT)\..\node_modules\react-native-file-manager",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 				);
 				INFOPLIST_FILE = "Miracle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -671,6 +711,11 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)\..\node_modules\realm\src/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
+					"$(SRCROOT)\..\node_modules\react-native-file-manager",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 				);
 				INFOPLIST_FILE = "Miracle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -723,6 +768,11 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)\..\node_modules\realm\src/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
+					"$(SRCROOT)\..\node_modules\react-native-file-manager",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -765,6 +815,11 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)\..\node_modules\realm\src/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-audio-streaming\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-audio\ios",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
+					"$(SRCROOT)\..\node_modules\react-native-file-manager",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
