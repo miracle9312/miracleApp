@@ -22,6 +22,7 @@ class Main extends Component {
         this.state={
             name:'music'
         }
+
     }
 
     componentDidMount(){
