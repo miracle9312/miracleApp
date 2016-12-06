@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     }
 })
 
+//进度条样式
 var customStyles8 = StyleSheet.create({
     container: {
         height: 20,

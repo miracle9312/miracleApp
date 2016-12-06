@@ -7,9 +7,14 @@ import {
     View,
     Navigator,
     BackAndroid
-} from 'react-native'
-import Splash from '../Splash'
-import {NaviGoBack} from '../utils/CommonUtil'
+} from 'react-native';
+import Splash from '../Splash';
+import {NaviGoBack} from '../utils/CommonUtil';
+import Home from '../home/Home';
+import Person from '../person/Person';
+import Login from '../person/Login';
+import Register from '../person/Register';
+import DataSet from '../person/DataSet';
 
 var _navigator;
 

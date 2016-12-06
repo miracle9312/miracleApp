@@ -13,14 +13,14 @@ import {
 import Main from './Main'
 
 let windowW = Dimensions.get('window').width;
-let windowH = Dimensions.get('window').height
+let windowH = Dimensions.get('window').height;
 
 export default class Splash extends Component {
     constructor(props){
         super(props);
         this.state={
             fadeVal : new Animated.Value(0)
-        }
+         }
     }
 
     componentDidMount(){
@@ -30,7 +30,7 @@ export default class Splash extends Component {
         ).start();
         this.timer=setTimeout(()=>{
             InteractionManager.runAfterInteractions(()=>{
-                const {navigator} = this.props
+                const {navigator} = this.props;
                 navigator.push({
                     component:Main,
                     name:'main'
@@ -40,7 +40,7 @@ export default class Splash extends Component {
     }
 
     componentWillUnmount(){
-        clearTimeout(this.timer)
+        clearTimeout(this.timer);
     }
 
     render () {

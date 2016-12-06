@@ -14,13 +14,13 @@ import test from '../redux/action/test';
 import ToolBar from './general/ToolBar';
 
 let _navigator = null;
-let currentRoute='music';
+let currentRoute='home';
 
 class Main extends Component {
     constructor(props) {
         super(props);
         this.state={
-            name:'music'
+            name:'home'
         }
 
     }

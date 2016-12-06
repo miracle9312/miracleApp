@@ -29,8 +29,9 @@ export default class ReadDetail extends Component {
         return(
             <View style={{flex:1,flexDirection:'column'}}>
                 <DetailToolBar
-                    onIconClicked={this.backToRead}
+                    navigator = {this.props.navigator}
                     text="连载"
+                    color="#ffffff"
                 />
                 <WebView
                     source={{uri:'http://m.wufazhuce.com/article/1552'}}

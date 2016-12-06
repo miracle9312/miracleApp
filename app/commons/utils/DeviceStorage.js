@@ -2,10 +2,11 @@
  * Created by miracle on 2016/9/4.
  */
 import Realm from 'realm';
-import {isNotEmpty} from './CommonUtil'
-import {Miracle} from './schemas/Miracle'
+import {isNotEmpty} from './CommonUtil';
+import {Miracle} from './schemas/Miracle';
+import {LoginInfo} from './schemas/LoginInfo';
 
-let realm = new Realm({schema:[Miracle],schemaVersion:5})
+let realm = new Realm({schema:[Miracle,LoginInfo],schemaVersion:7});
 export default class DeviceStorage {
 
     /**创建一个对象
@@ -21,7 +22,6 @@ export default class DeviceStorage {
                 })
             }
             flag = true;
-            throw new Error('test')
         }catch(e){
             flag = false;
         }
@@ -110,6 +110,7 @@ export default class DeviceStorage {
 
     /**查询数据库版本*/
     static getVersion = () => {
+        console.log(realm.schema);
         let flag = false;
         try{
             let currentVersion = Realm.schemaVersion(Realm.defaultPath);
