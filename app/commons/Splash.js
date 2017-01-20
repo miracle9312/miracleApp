@@ -10,12 +10,15 @@ import {
     StyleSheet,
     InteractionManager
 } from 'react-native';
-import Main from './Main'
+import Main from './Main';
+import {connect} from 'react-redux';
+import {fetchAll} from './utils/CommonUtil';
+import fetchMood from '../redux/action/mood';
 
 let windowW = Dimensions.get('window').width;
 let windowH = Dimensions.get('window').height;
 
-export default class Splash extends Component {
+class Splash extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -30,7 +33,14 @@ export default class Splash extends Component {
         ).start();
         this.timer=setTimeout(()=>{
             InteractionManager.runAfterInteractions(()=>{
-                const {navigator} = this.props;
+                const {navigator,dispatch} = this.props;
+                let params={
+                    id:6,
+                    page:1,
+                    size:10
+                }
+                dispatch(fetchMood(params));
+                /*dispatch(fetchAll());*/
                 navigator.push({
                     component:Main,
                     name:'main'
@@ -54,6 +64,8 @@ export default class Splash extends Component {
         )
     }
 }
+
+export default connect ()(Splash);
 
 const styles = StyleSheet.create({
     splashContainer:{

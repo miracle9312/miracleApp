@@ -3,6 +3,8 @@
  */
 import React,{Component} from 'react';
 import {
+    ActivityIndicator ,
+    Modal,
     StyleSheet,
     TouchableOpacity,
     Dimensions,
@@ -16,14 +18,18 @@ import {Form,Control,Errors} from 'react-redux-form/native';
 import {ListContainer,ErrorInfo,OperateButton} from './ErrorList';
 import Register from './Register';
 import LoginOperator from '../../redux/action/login';
-import FindPwd from './FindPwd'
-import Person from './Person'
+import FindPwd from './FindPwd';
+import Person from './Person';
+import DeviceStorage from '../utils/DeviceStorage'
 
 let windowW = Dimensions.get('window').width;
 let windowH = Dimensions.get('window').height;
 class Login extends Component {
     constructor(props){
         super(props);
+        this.state={
+            modalVisible:false,
+        }
     }
 
     toRegister=()=>{
@@ -43,25 +49,47 @@ class Login extends Component {
     }
 
     componentDidMount(){
-
     }
 
     _login=()=>{
-        const {dispatch,forms,navigator} =this.props;
+        const {dispatch,forms,login,navigator} =this.props;
+        console.log(this.props)
+        console.log(forms)
         const params={
-            uname:forms.login.name.value,
-            pwd:forms.login.password.value
+            uname:forms.forms.login.name.value,
+            pwd:forms.forms.login.password.value
         }
-        dispatch(LoginOperator.login(params));
-        /*navigator.push({
-            component:Person,
-            name:'person'
-        })*/
-        /*dispatch(login(params))*/
+        dispatch(LoginOperator.login(params,navigator));
+        /*if(login.status==1){
+            this.toPerson();
+        }else{
+            return;
+        }*/
     }
 
     render(){
         return(
+            <View>
+                <Modal
+                    animationType='fade'
+                    visible={this.props.login.status==0}
+                    transparent={true}
+                    onRequestClose={()=>{alert('hello')}}
+                >
+                    <View
+                        style={styles.loginBack}
+                    >
+                        <View
+                            style={styles.loginBar}
+                        >
+                            <ActivityIndicator
+                                color="#fff"
+                                size="small"
+                            />
+                            <Text style={{color:'#fff'}}>登录中</Text>
+                        </View>
+                    </View>
+                </Modal>
             <View style = {styles.tableCan}>
                 <DetailToolBar
                     color="#ffffff"
@@ -91,7 +119,7 @@ class Login extends Component {
                                 required:'用户名不能为空',
                             }}
                             component={prop=><ErrorInfo info = {prop.children} />}
-                            shows={true}
+                            show= {{touched: true, focus: false}}
 
                         />
                         <ListContainer
@@ -114,7 +142,7 @@ class Login extends Component {
                                 required:'密码不能为空',
                             }}
                             component={prop=><ErrorInfo info = {prop.children} />}
-                            shows={true}
+                            show= {{touched: true, focus: false}}
                         />
                         <OperateButton
                             operate={this._login}
@@ -134,13 +162,17 @@ class Login extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
+            </View>
         )
     }
 }
 
 function mapStateToProps(state){
-    const {forms} = state;
-    return forms;
+    const {forms,login} = state;
+    return {
+        forms,
+        login
+    };
 }
 export default connect(mapStateToProps)(Login)
 
@@ -155,5 +187,20 @@ const styles = StyleSheet.create({
         backgroundColor:'#eeeeee',
         width:windowW,
         height:windowH
+    },
+    loginBar:{
+        borderRadius:2,
+        width:windowW*19/20,
+        height:windowH/20,
+        backgroundColor:'#212121',
+        alignItems:'center',
+        flexDirection:'row',
+        justifyContent:'center'
+    },
+    loginBack:{
+        backgroundColor:'#2121',
+        width:windowW,
+        height:windowH,
+        alignItems:'center'
     }
 })

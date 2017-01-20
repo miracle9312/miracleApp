@@ -15,8 +15,10 @@ import DetailToolBar from '../general/DetailToolBar';
 import {ListContainer,ErrorInfo,OperateButton} from './ErrorList';
 import {Control,Errors,Form,actions} from 'react-redux-form/native';
 import {connect} from 'react-redux';
-import validator from 'validator'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import validator from 'validator';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import fetchRegist from '../../redux/action/regist';
+import Login from './Login'
 
 let windowW = Dimensions.get('window').width;
 let windowH = Dimensions.get('window').height;
@@ -29,11 +31,38 @@ class Register extends Component{
     changeSex=(sex)=>{
         const {dispatch} = this.props
         dispatch(actions.change('forms.register.sex',sex))
-        console.log(this.props.register.sex)
+        /*console.log(this.props.register.sex)*/
+    }
+
+    componentDidMount(){
+        const{forms} = this.props
+        console.log(this.props.forms.forms.register.sex.value)
+    }
+
+    _regist=()=>{
+        const {dispatch,forms,regist,navigator} = this.props;
+        console.log(forms.register)
+        let params = {
+            uname:forms.forms.register.username.value,
+            pwd:forms.forms.register.password.value,
+            phone:forms.forms.register.phone.value,
+            email:forms.forms.register.email.value,
+            sex:forms.forms.register.sex.value,
+            city:forms.forms.register.address.value
+        }
+        dispatch(fetchRegist(params));
+        if(regist.status==1){
+            navigator.push({
+                component:Login,
+                name:'login'
+            })
+        }
+
     }
 
 
     render(){
+        let sexValue = this.props.forms.forms.register.sex.value;
         return(
             <View>
                 <DetailToolBar
@@ -160,22 +189,24 @@ class Register extends Component{
 
                                 <View style={{flexDirection:'row',marginTop:20}}>
                                     <View style={styles.sexIcon}>
-                                        <Icon name = 'venus-mars' size={30} color='#ccc'/>
+                                        <Icon name = 'venus-mars' size={30} color='#3ca1d6'/>
                                     </View>
                                     <TouchableOpacity
                                         onPress={this.changeSex.bind(this,0)}
-                                        style={[styles.sexButton,{backgroundColor:this.props.forms.register.sex.value==0?'#3ca1d6':'#fff'}]}                                    >
-                                        <Icon name = 'mars' color={this.props.register.sex==0?'#fff':'#eee'} size={30}/>
+                                        style={[styles.sexButton,{backgroundColor:sexValue==0?'#3ca1d6':'#fff'}]}                                    >
+                                        <Icon name = 'mars' color={sexValue==0?'#fff':'#eee'} size={30}/>
                                     </TouchableOpacity>
 
                                     <TouchableOpacity
                                         onPress={this.changeSex.bind(this,1)}
-                                        style={[styles.sexButton,{backgroundColor:this.props.forms.register.sex.value==1?'#3ca1d6':'#fff'}]}
+                                        style={[styles.sexButton,{backgroundColor:sexValue==1?'#3ca1d6':'#fff'}]}
                                     >
-                                        <Icon name = 'venus' color={this.props.forms.register.sex.value==1?'#fff':'#eee'} size={30}/>
+                                        <Icon name = 'venus' color={sexValue==1?'#fff':'#eee'} size={30}/>
                                     </TouchableOpacity>
                                 </View>
-                            <OperateButton text="注册" />
+                            <OperateButton
+                                operate = {this._regist}
+                                text="注册" />
                         </Form>
                     </View>
                 </ScrollView>
@@ -185,8 +216,11 @@ class Register extends Component{
 }
 
 function mapStateToprops (state){
-    const {forms} = state
-    return forms
+    const {forms,regist} = state
+    return {
+        forms,
+        regist
+    }
 }
 
 export default connect(mapStateToprops)(Register)

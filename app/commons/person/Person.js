@@ -17,6 +17,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Login from './Login';
 import DetailToolBar from '../general/DetailToolBar';
 import DataSet from './DataSet';
+import {connect} from 'react-redux';
+import {isNotEmpty} from '../utils/CommonUtil';
 
 let windowH = Dimensions.get('window').height;
 let windowW = Dimensions.get('window').width;
@@ -24,7 +26,7 @@ let windowW = Dimensions.get('window').width;
 let MOCK_DATA = [{name:'流量播放提醒',icon:'download'},{name:'清楚缓存',icon:'database'},{name:'去评分',icon:'pencil'}
 ,{name:'联系我们',icon:'phone'},{name:'用户协议',icon:'file'},{name:'版本号',icon:'github'}];
 
-export default class Person extends Component {
+class Person extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -34,24 +36,7 @@ export default class Person extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props);
-    }
-
-    /*componentWillMount() {
-        BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
-    }
-    componentWillUnmount() {
-        BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
-    }*/
-
-    onBackAndroid=()=>{
-        const {navigator} = this.props
-        const routers = navigator.getCurrentRoutes().length;
-        if(routers>1){
-            navigator.pop();
-            return true
-        }
-        return false
+        console.log(this.props.person.data)
     }
 
     expandSetting =()=> {
@@ -59,19 +44,28 @@ export default class Person extends Component {
     }
 
     toLogin=()=>{
-        const {navigator} = this.props;
-        navigator.push({
-            component:Login,
-            name:'login'
-        })
+        const {navigator,person} = this.props;
+        if(!isNotEmpty(person.data)){
+            navigator.push({
+                component:Login,
+                name:'login'
+            })
+        }else{
+            return
+        }
     }
 
     toDataSet=()=>{
-        const{navigator} = this.props;
-        navigator.push({
-            component:DataSet,
-            name:'dataset'
-        })
+        const{navigator,person} = this.props;
+        if(isNotEmpty(person.data)){
+            navigator.push({
+                component:DataSet,
+                name:'dataset',
+                personData:person.data
+            })
+        }else{
+            return
+        }
     }
 
     renderSetting=(data)=>{
@@ -89,12 +83,14 @@ export default class Person extends Component {
         )
     }
     render(){
+        const {person} = this.props;
         return(
                 <View style = {style.mainContainer}>
                     <DetailToolBar
                         navigator = {this.props.navigator}
                         text = ''
                         color = '#92c1dc'
+                        toPage="main"
                     />
                     <View style={style.blueBG}>
                         <TouchableOpacity
@@ -104,7 +100,7 @@ export default class Person extends Component {
                                 <View style = {style.loginIcon}>
                                     <Icon size = {60} name="universal-access" color= "#6c7a93" />
                                 </View>
-                                <Text style = {style.loginText}>未登录</Text>
+                                <Text style = {style.loginText}>{isNotEmpty(person.data)?person.data.nickName:'未登录'}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -163,12 +159,20 @@ export default class Person extends Component {
                                         />:<View/>
                                 }
                             </View>
+
                         </View>
                     </View>
                 </View>
         )
     }
 }
+function mapStateToProps(state){
+    const{person} = state;
+    return {
+        person
+    }
+}
+export default connect(mapStateToProps)(Person);
 
 const style = StyleSheet.create({
     mainContainer:{

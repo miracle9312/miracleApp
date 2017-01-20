@@ -8,7 +8,7 @@ export const LoginInfo={
         uid:{type:'int'},
         username:{type:'string',optional:true},
         picsize:{type:'string',optional:true},
-        is_admin:{type:'int',optional:true},
+        is_admin:{type:'string',optional:true},
         _token:{type:'string',optional:true}
     }
 }

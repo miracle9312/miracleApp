@@ -15,8 +15,9 @@ import DetailToolBar from '../general/DetailToolBar';
 import {ListContainer,ErrorInfo,OperateButton} from './ErrorList';
 import {Control,Errors,Form,actions} from 'react-redux-form/native';
 import {connect} from 'react-redux';
-import validator from 'validator'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import validator from 'validator';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {fetchDataset} from '../../redux/action/dateset'
 
 let windowW = Dimensions.get('window').width;
 let windowH = Dimensions.get('window').height;
@@ -27,6 +28,16 @@ class DataSet extends Component{
         this.state={
             editable:false
         }
+    }
+
+    componentDidMount(){
+        console.log(this.props,'dataset props')
+        this.initialSex();
+    }
+
+    initialSex=()=>{
+        const {dispatch,route} = this.props;
+        dispatch(actions.change('forms.dataset.sex',route.personData.sex))
     }
 
     changeSex=(sex)=>{
@@ -40,12 +51,25 @@ class DataSet extends Component{
     }
 
     changeEditable=()=>{
+        const {dispatch,forms,navigator} = this.props;
         this.setState({
             editable:this.state.editable?false:true
         })
+        if(this.state.editable){
+            let params = {
+                uname:forms.dataset.username.value,
+                address:forms.dataset.address.value,
+                email:forms.dataset.email.value,
+                phone:forms.dataset.phone.value,
+                pwd:this.props.route.personData.password
+
+            }
+            dispatch(fetchDataset(params,navigator))
+        }
     }
 
     render(){
+        const {personData} = this.props.route
         return(
             <View>
                 <DetailToolBar
@@ -63,8 +87,8 @@ class DataSet extends Component{
                             >
                                 <Control.TextInput
                                     editable={this.state.editable}
-                                    placeholder  = '用户名'
                                     underlineColorAndroid = '#eee'
+                                    defaultValue = {personData.nickName}
                                     model = '.dataset.username'
                                     validators={{
                                         required:val=>val&&val.length>0
@@ -81,36 +105,13 @@ class DataSet extends Component{
                                 show= {{touched: true, focus: false}}
                             />
 
-                            {/*<ListContainer
-                                iconname='key'
-                            >
-                                <Control.TextInput
-                                    editable={this.state.editable}
-                                    placeholder  = '密码'
-                                    underlineColorAndroid = '#eee'
-                                    model = '.dataset.password'
-                                    validators={{
-                                        required:val=>val&&val.length>0
-                                    }}
-                                    validateOn = 'blur'
-                                />
-                            </ListContainer>
-                            <Errors
-                                model = '.dataset.password'
-                                messages = {{
-                                    required:'密码不能为空'
-                                }}
-                                component ={props=><ErrorInfo info={props.children} />}
-                                show= {{touched: true, focus: false}}
-                            />*/}
-
                             <ListContainer
                                 iconname='map-marker'
                             >
                                 <Control.TextInput
                                     editable={this.state.editable}
-                                    placeholder  = '地址'
                                     underlineColorAndroid = '#eee'
+                                    defaultValue = {personData.address}
                                     model = '.dataset.address'
                                     validators={{
                                         required:val=>val&&val.length>0
@@ -132,8 +133,8 @@ class DataSet extends Component{
                             >
                                 <Control.TextInput
                                     editable={this.state.editable}
-                                    placeholder  = '邮箱'
                                     underlineColorAndroid = '#eee'
+                                    defaultValue = {personData.email?personData.email:''}
                                     model = '.dataset.email'
                                     validators={{
                                         required:val=>val&&val.length>0,
@@ -157,7 +158,7 @@ class DataSet extends Component{
                             >
                                 <Control.TextInput
                                     editable={this.state.editable}
-                                    placeholder  = '手机号'
+                                    defaultValue = {personData.phone}
                                     underlineColorAndroid = '#eee'
                                     model = '.dataset.phone'
                                     validators={{
@@ -204,7 +205,7 @@ class DataSet extends Component{
 }
 
 function mapStateToprops (state){
-    const {forms} = state
+    const {forms} = state;
     return forms
 }
 

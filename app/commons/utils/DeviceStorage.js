@@ -5,8 +5,12 @@ import Realm from 'realm';
 import {isNotEmpty} from './CommonUtil';
 import {Miracle} from './schemas/Miracle';
 import {LoginInfo} from './schemas/LoginInfo';
+import {PersonInfo} from './schemas/PersonInfo';
+import {Pwd} from './schemas/Pwd';
+import {Mood} from './schemas/Mood';
+import {MoodComment} from './schemas/MoodComment'
 
-let realm = new Realm({schema:[Miracle,LoginInfo],schemaVersion:7});
+let realm = new Realm({schema:[Miracle,LoginInfo,PersonInfo,Pwd,Mood,MoodComment],schemaVersion:23});
 export default class DeviceStorage {
 
     /**创建一个对象
@@ -46,10 +50,30 @@ export default class DeviceStorage {
             }
             flag = true;
         }catch(e){
-            flag = false
+            flag = false;
         }
         return flag;
     };
+
+    static createSingleObjectWithList (storedObj,listname,list){
+        let flag = false;
+        try{
+            if(isNotEmpty(list)){
+                let comments = storedObj.comments;
+                list.map(
+                    (obj)=>{
+                        realm.write(()=>{
+                            comments.push(obj);
+                        })
+                    }
+                )
+            }
+            flag = true;
+        }catch(e){
+            flag = false;
+        }
+        return flag;
+    }
 
     /**删除一个对象列表
      * @param name string
@@ -78,7 +102,20 @@ export default class DeviceStorage {
         try{
             if(isNotEmpty(name)){
                 let results = JSON.parse(JSON.stringify(realm.objects(name)));
-                console.log(results)
+                return results;
+            }
+            flag = true;
+        }catch(e){
+            flag = false;
+        }
+        return flag;
+    };
+
+    static queryNativeObject =(name)=>{
+        let flag = false;
+        try{
+            if(isNotEmpty(name)){
+                let results = realm.objects(name);
                 return results;
             }
             flag = true;
@@ -89,7 +126,7 @@ export default class DeviceStorage {
     };
 
     /**条件查询对象
-    * @param name string
+     * @param name string
      * @param filter string*/
     static queryObjByFilter = (name,filter)=>{
         let flag = false;
@@ -97,8 +134,7 @@ export default class DeviceStorage {
             let result;
             if (isNotEmpty(name) && isNotEmpty(filter)) {
                 let results = realm.objects(name);
-                result = JSON.parse(JSON.stringify(results.filtered(filter)));
-                console.log(result);
+                result = results.filtered(filter);
             }
             flag = true;
             return result;
@@ -119,6 +155,25 @@ export default class DeviceStorage {
             return currentVersion
         }catch(e){
             flag = false
+        }
+        return flag;
+    }
+
+    /*清楚所有缓存*/
+    static clearAll =()=> {
+        let flag = false
+        try{
+            realm.schema.map(
+                data=>{
+                    realm.write(()=>{
+                        let table = realm.objects(data.name);
+                        realm.delete(table);
+                    })
+                    flag = true;
+                }
+            )
+        }catch(e){
+            flag=false;
         }
         return flag;
     }

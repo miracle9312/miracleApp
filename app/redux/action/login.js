@@ -5,30 +5,44 @@ import * as types from '../actiontype/actionTypes';
 import {request} from '../../commons/utils/RequestUtil';
 import {API_LOGIN_HOST} from '../../commons/utils/Urls';
 import {isNotEmpty} from '../../commons/utils/CommonUtil';
-import DeviceStorage from '../../commons/utils/DeviceStorage'
+import DeviceStorage from '../../commons/utils/DeviceStorage';
+import {fetchAll} from '../../commons/utils/CommonUtil';
+import Person from '../../commons/person/Person'
 
 export default class Login {
     //登录
-    static login=(params)=>{
+    static login=(params,navigator)=>{
         return dispatch=>{
             dispatch(logining())
             return request(API_LOGIN_HOST,'post',params)
                 .then(
                     (response)=>{
+                        console.log(response)
                         //将登录信息写入state
-                        if(response.code=='0000'){
+                        if(response.code=='00000'){
                             dispatch(loginSuccess(response.data));
                             //将登录信息写入本地缓存
-                            DeviceStorage.deleteTable('LoginInfo');
+                            DeviceStorage.clearAll();
                             DeviceStorage.createSingleObject('LoginInfo',response.data);
-                            console.log(JSON.stringify(DeviceStorage.queryObject('LoginInfo')));
+                            //将用户和密码写入本地缓存
+                            DeviceStorage.createSingleObject('Pwd',params);
+                            /*console.log(DeviceStorage.queryObject('Pwd'),'check password')*/
+                            //重新获取所有数据
+                            dispatch(fetchAll());
+                            navigator.push({
+                                component:Person,
+                                name:'person'
+                            })
                         }else{
                             throw new Error('登录失败');
                         }
                     }
                 ).catch(
-                    dispatch(loginFail())
-                )
+                    err=>{
+                        if(isNotEmpty(err)){
+                            dispatch(loginFail())
+                        }
+                    })
         }
     }
     //将本地缓存的login信息写入state

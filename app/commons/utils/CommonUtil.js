@@ -1,6 +1,11 @@
 /**
  * Created by miracle on 2016/9/9.
  */
+
+import {fetchPerson} from '../../redux/action/person';
+import fetchMood from '../../redux/action/mood'
+import DeviceStorage from '../utils/DeviceStorage';
+
 /*
 * judge the obj is empty or not
 * @param bool flag*/
@@ -18,4 +23,21 @@ export function isNotEmpty(obj){
         }
     }
     return flag;
+}
+
+/*获取全部数据*/
+export function fetchAll(){
+    try{
+        let loginInfo = JSON.parse(JSON.stringify(DeviceStorage.queryObject('LoginInfo')))[0];
+        if(!loginInfo){
+            throw new Error('NO LOGININFO');
+            return
+        }
+        let id = loginInfo.uid;
+        return dispatch=>{
+            dispatch(fetchPerson(id));
+        }
+    }catch(e){
+        console.log(e)
+    }
 }

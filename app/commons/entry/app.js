@@ -15,6 +15,8 @@ import Person from '../person/Person';
 import Login from '../person/Login';
 import Register from '../person/Register';
 import DataSet from '../person/DataSet';
+import CommentBar from '../home/CommentBar';
+import Main from '../Main';
 
 var _navigator;
 

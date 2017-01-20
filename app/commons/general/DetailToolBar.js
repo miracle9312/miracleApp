@@ -3,6 +3,8 @@
  */
 import React,{Component} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'
+import {isNotEmpty} from '../utils/CommonUtil';
+import Main from '../Main'
 
 export default class DetailToolBar extends Component {
     constructor(props){
@@ -10,10 +12,19 @@ export default class DetailToolBar extends Component {
     }
 
     onBackAndroid=()=>{
-        const {navigator} = this.props;
+        const {navigator,toPage} = this.props;
         const routers = navigator.getCurrentRoutes().length;
         if(routers>1){
-            navigator.pop();
+            switch(toPage){
+                case 'main':
+                    navigator.push({
+                        component:Main,
+                        name:"main"
+                    });
+                    break
+                default:
+                    navigator.pop();
+            }
             return true
         }
         return false

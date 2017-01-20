@@ -43,7 +43,7 @@ export function request(url,method,params){
             params:params,
         }).then((response)=>{
             if(response.status==200){
-                resolve(response.data)
+                resolve(response.data);
             }else{
                 reject(response)
             }

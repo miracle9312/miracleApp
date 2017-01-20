@@ -11,12 +11,16 @@ import {
     Dimensions
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {json2TimeStamp} from '../utils/Formatutil'
+import {json2TimeStamp} from '../utils/Formatutil';
+import {connect} from 'react-redux';
+import fetchMood from '../../redux/action/mood';
+import {isNotEmpty} from '../utils/CommonUtil';
+import * as types from '../../redux/actiontype/actionTypes'
 
 var windowW = Dimensions.get('window').width;
 var windowH = Dimensions.get('window').height;
 
-export default class Card extends Component {
+class Card extends Component {
     constructor(props){
         super (props)
     }
@@ -26,60 +30,85 @@ export default class Card extends Component {
     }
 
     componentDidMount(){
+
     }
 
     render(){
-        const {dataList} = this.props
-        return(
-            <ViewPagerAndroid
-                initialPage={0}
-                style={{flex:1}}
-            >
-                {
-                    dataList.map((data,index)=>{
-                        return(
-                            <View
-                                key={index}
-                                style={styles.cardContainer}>
-                                <View style={styles.card}>
-                                    <Image
-                                        resizeMode='contain'
-                                        style={styles.cardImage}
-                                        source={{uri:data.pic}}/>
-                                    <View style={styles.titleContainer}>
-                                        <Text style={styles.titleText}>VOL.{data.vol}</Text>
-                                        <Text style={styles.titleText}>{data.title}  {data.author}作品</Text>
-                                    </View>
-                                    <View style={styles.contentContainer}>
-                                        <Text style={styles.contentText}>{data.content}</Text>
-                                    </View>
-                                    <View style={styles.weatherContainer}>
-                                        <Icon name='sun-o' size={18} color='#fac950'/>
-                                        <Text>{data.position} {json2TimeStamp(data.timestamp)}</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.operateContainer}>
-                                    <View style={styles.opIconContainer}>
-                                        <Icon name="pencil-square-o" size = {25} color='#aecce6' style={styles.opIcon}/>
-                                        <Text style={styles.opText}>小记</Text>
-                                    </View>
-                                    <View style={styles.opIconContainer}>
-                                        <View style={styles.opIconContainer}>
-                                            <Icon  name="heart-o" size = {25} color = '#aecce6' style={styles.opIcon}/>
-                                            <Text style={styles.opText}>{data.collected}</Text>
+        const {mood,dataList} = this.props;
+        if(mood.type == types.FETCH_MOOD){
+            return (
+                <View></View>
+            )
+        }else if(mood.type== types.FETCH_MOOD_SUCCESS){
+            console.log(mood);
+            let moodData = Object.values(mood.data);
+            return (
+                <View style = {styles.container}>
+                    <ViewPagerAndroid
+                        initialPage={0}
+                        style={{flex: 1}}
+                    >
+                        {
+                            moodData.map((data, index)=> {
+                                let moodContent = data.mood;
+                                let comment = data.comments;
+                                return (
+                                    <View
+                                        key={index}
+                                        style={styles.cardContainer}>
+                                        <View style={styles.card}>
+                                            <Image
+                                                resizeMode='contain'
+                                                style={styles.cardImage}
+                                                source={{uri: moodContent.imageurl}}/>
+                                            <View style={styles.titleContainer}>
+                                                <Text style={styles.titleText}>VOL.{moodContent.id}</Text>
+                                                <Text style={styles.titleText}>{moodContent.user_name}作品</Text>
+                                            </View>
+                                            <View style={styles.contentContainer}>
+                                                <Text style={styles.contentText}>{moodContent.mood_content}</Text>
+                                            </View>
+                                            <View style={styles.weatherContainer}>
+                                                <Icon name='sun-o' size={18} color='#fac950'/>
+                                                <Text>{data.position} {json2TimeStamp(moodContent.mood_publish_time)}</Text>
+                                            </View>
                                         </View>
-                                        <Icon name="share-square-o" size = {25} color="#aecce6" style={styles.opIcon} />
+                                        <View style={styles.operateContainer}>
+                                            <View style={styles.opIconContainer}>
+                                                <Icon name="pencil-square-o" size={25} color='#aecce6'
+                                                      style={styles.opIcon}/>
+                                                <Text style={styles.opText}>小记</Text>
+                                            </View>
+                                            <View style={styles.opIconContainer}>
+                                                <Icon name="share-square-o" size={25} color="#aecce6"
+                                                      style={styles.opIcon}/>
+                                            </View>
+                                        </View>
                                     </View>
-                                </View>
-                            </View>
-                        )
-                    })}
-            </ViewPagerAndroid>
-        )
+                                )
+                            })}
+                    </ViewPagerAndroid>
+                </View>
+            )
+        }
+
     }
 }
 
+/*function mapStateToProps (state) {
+    const {mood} = state;
+    return {mood};
+
+}
+
+export default connect(mapStateToProps)(Card);*/
+
 const styles = StyleSheet.create({
+    container:{
+        backgroundColor:'#ffffff',
+        width:windowW,
+        height:windowH-130
+    },
     cardContainer:{
         marginTop:windowH/50,
         width:windowW,
