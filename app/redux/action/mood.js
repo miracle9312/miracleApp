@@ -24,28 +24,33 @@ export default function fetchMood (params){
             return request(API_MOOD+'/'+id,'GET',params).then(
                 response=>{
                     let responseData = response.data;
+                    /*console.log(responseData,'mood from server');*/
                     //responseData里面保存的是responseData在函数中最终值，对responseData做任何修改都要谨慎
                     dispatch(fetchedMood(response.data));
                     //将数据写入本地缓存
-                    let moodData = Object.values(responseData);
+                    /*let moodData = Object.values(responseData);
                     moodData.map(
                         (mood,i)=>{
                             let comments = mood.comments;
                             DeviceStorage.createObjectList('MoodComment',comments);
+                            console.log(DeviceStorage.queryObject('MoodComment'),'mood comment');
                             let moodData = mood.mood;
                             DeviceStorage.createSingleObject('Mood',moodData);
+                            console.log(DeviceStorage.queryObject('Mood'),'mood');
                         }
-                    )
+                    )*/
                     /**
                      * 利用realm列表属性将数据写入 实验失败！
                      * */
-                    /*let moodData = response.data[0];
+                    /*DeviceStorage.deleteTable('Mood');*/
+                     let moodData = response.data[0];
                      let list = moodData.comments;
-                     moodData.comments = [];
-                     DeviceStorage.createSingleObject('Mood',moodData);
+                     /*moodData.comments = [];*/
+                     /*moodData.mood.comments = [];*/
+                     DeviceStorage.createSingleObject('Mood',moodData.mood);
                      let localMood = DeviceStorage.queryNativeObject('Mood')[0];
                      console.log(DeviceStorage.createSingleObjectWithList(localMood,'comments',list));
-                     console.log(DeviceStorage.queryObject('Mood'));*/
+                     console.log(DeviceStorage.queryObject('Mood'));
                     /*let moodData = Object.values(response.data);
                     moodData.map(
                         (mood)=>{

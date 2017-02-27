@@ -38,7 +38,7 @@ class Splash extends Component {
                     id:6,
                     page:1,
                     size:10
-                }
+                };
                 dispatch(fetchMood(params));
                 /*dispatch(fetchAll());*/
                 navigator.push({

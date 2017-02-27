@@ -10,6 +10,7 @@ export const MoodComment ={
         "moodid":{type:"string",optional:false},
         "publisher":{type:"int",optional:false},
         "commenttime":{type:"int",optional:true},
-        "comcontent":{type:"string",optional:true}
+        "comcontent":{type:"string",optional:true},
+        "username":{type:"string",optional:true},
     }
 }

@@ -27,6 +27,7 @@ export default class Login {
                             //将用户和密码写入本地缓存
                             DeviceStorage.createSingleObject('Pwd',params);
                             /*console.log(DeviceStorage.queryObject('Pwd'),'check password')*/
+                            DeviceStorage.queryObject('LoginInfo');
                             //重新获取所有数据
                             dispatch(fetchAll());
                             navigator.push({

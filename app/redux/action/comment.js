@@ -22,7 +22,7 @@ export default function addComment(param){
         params.commenttime = commenttime;
         params._token = user._token;
         params.user = user.uid;
-        Object.assign(params, param)
+        Object.assign(params, param);
         return dispatch=> {
             //服务器新增一条评论
             return request(API_COMMENT, 'POST', params).then(
