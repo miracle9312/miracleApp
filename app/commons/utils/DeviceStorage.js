@@ -10,7 +10,7 @@ import {Pwd} from './schemas/Pwd';
 import {Mood} from './schemas/Mood';
 import {MoodComment} from './schemas/MoodComment'
 
-let realm = new Realm({schema:[Miracle,LoginInfo,PersonInfo,Pwd,Mood,MoodComment],schemaVersion:26});
+let realm = new Realm({schema:[Miracle,LoginInfo,PersonInfo,Pwd,Mood,MoodComment],schemaVersion:28});
 export default class DeviceStorage {
 
     /**创建一个对象

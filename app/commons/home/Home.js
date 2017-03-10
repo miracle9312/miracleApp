@@ -69,7 +69,9 @@ class Square extends Component {
         const {mood} = this.props;
         if(mood.type == types.FETCH_MOOD){
             return (
-                <View></View>
+                <View>
+                    <Text>miracle</Text>
+                </View>
             )
         }else if(mood.type== types.FETCH_MOOD_SUCCESS){
             let moodData = Object.values(mood.data);
