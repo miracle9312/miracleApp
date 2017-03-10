@@ -9,6 +9,38 @@ miracleApp是基于React Native实现的社交类APP。该分支针对原生新�
 5. 支持登录、注册、修改资料、发布心情，添加评论等功能，并与后台进行了联调
 6. 支持播放音乐，和进度条更新
 
+---
+### 截图
+
+---
+![Example1](app/images/micenter.png)
+
+
+![Example2](app/images/micomment.png)
+
+
+![Example3](app/images/midataset.png)
+
+
+![Community](app/images/midiary.png)
+
+
+![Example4](app/images/milogin.png)
+
+
+![Example4](app/images/mimood.png)
+
+
+![Example4](app/images/mimood.png)
+
+
+![Example4](app/images/miread.png)
+
+
+![Example4](app/images/miregis.png)
+
+---
+
 ## 运行
 
 ```
