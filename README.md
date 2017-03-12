@@ -1,5 +1,5 @@
 # miracleApp
-miracleApp是基于React Native实现的社交类APP。该分支针对原生新版食物派开发，目前仅适配Android端。如有问题和改进意见，欢迎提issue一起讨论学习。
+miracleApp是基于React Native实现的社交类APP。目前仅适配Android端。如有问题和改进意见，欢迎提issue一起讨论学习。
 
 ## 现有功能点
 1. 登录，注册，个人中心，心情，阅读，音乐，日记等界面的UI搭建
