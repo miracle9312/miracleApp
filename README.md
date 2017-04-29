@@ -13,31 +13,8 @@ miracleApp是基于React Native实现的社交类APP。目前仅适配Android端
 ### 截图
 
 ---
-![Example1](app/images/micenter.png)
+![Example1](app/images/demo.gif)
 
-
-![Example2](app/images/micomment.png)
-
-
-![Example3](app/images/midataset.png)
-
-
-![Community](app/images/midiary.png)
-
-
-![Example4](app/images/milogin.png)
-
-
-![Example4](app/images/mimood.png)
-
-
-![Example4](app/images/mimood.png)
-
-
-![Example4](app/images/miread.png)
-
-
-![Example4](app/images/miregis.png)
 
 ---
 
