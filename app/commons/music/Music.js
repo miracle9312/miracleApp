@@ -40,7 +40,7 @@ export default class Music extends Component {
         return(
             <View>
                 <MusicPlayer
-                    path='file:///storage/emulated/0/netease/cloudmusic/Music/123.mp3'
+                    path='http://m10.music.126.net/20170429222217/9349de897123db7bd81b757e26421d86/ymusic/c042/2a2c/06b9/e032442cea29abd11470fb190055564c.mp3'
                 />
                 <View style={styles.listContainer}>
                     <ListView
